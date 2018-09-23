@@ -27,10 +27,6 @@ public abstract class Command {
     public  abstract String getPermissionMessage();
 
     public final void execute(CommandSender sender, String[] args) {
-        if (!sender.hasPermission(this.getPermission())) {
-            sender.sendMessage(this.getPermissionMessage());
-            return;
-        }
         if (args.length != 0) {
             for (SubCommand command : this.subCommands) {
                 if (command.getLabel().equalsIgnoreCase(args[0])) {
@@ -38,8 +34,12 @@ public abstract class Command {
                     return;
                 }
             }
-        } else
-            this.execute(sender);
+        }
+        if (!sender.hasPermission(this.getPermission())) {
+            sender.sendMessage(this.getPermissionMessage());
+            return;
+        }
+        this.execute(sender);
     }
 
     public String getLabel() {
