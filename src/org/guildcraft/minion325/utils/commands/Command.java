@@ -20,11 +20,11 @@ public abstract class Command {
         this.label = label;
     }
 
-    abstract void execute(CommandSender player);
+    public abstract void execute(CommandSender player);
 
-    abstract String getPermission();
+    public abstract String getPermission();
 
-    abstract String getPermissionMessage();
+    public abstract String getPermissionMessage();
 
     public final void execute(CommandSender sender, String[] args) {
         if (!sender.hasPermission(this.getPermission())) {
