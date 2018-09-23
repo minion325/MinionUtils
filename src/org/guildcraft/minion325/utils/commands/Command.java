@@ -24,7 +24,7 @@ public abstract class Command {
 
     public abstract String getPermission();
 
-    public abstract String getPermissionMessage();
+    public  abstract String getPermissionMessage();
 
     public final void execute(CommandSender sender, String[] args) {
         if (!sender.hasPermission(this.getPermission())) {
