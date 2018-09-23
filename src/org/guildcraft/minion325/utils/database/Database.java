@@ -23,7 +23,7 @@ public class Database {
         if (!Verify.isNotNull(host, port, database, username, password))
             throw new NullPointerException("An argument passed to the constructor was found to be null");
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true", username, password);
+            connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
