@@ -1,6 +1,5 @@
 package org.guildcraft.minion325.utils.database;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.guildcraft.minion325.utils.validation.Verify;
@@ -17,6 +16,8 @@ public class Database {
     private Connection connection;
     private Plugin plugin;
     private Map<String, PreparedStatement> statements = new HashMap<>();
+    private String host, database, username;
+    private int port;
 
     public Database(Plugin plugin, String host, int port, String database, String username, String password) {
         this.plugin = plugin;
@@ -70,6 +71,22 @@ public class Database {
                 }
             }
         }.runTaskAsynchronously(this.plugin);
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public String getDatabase() {
+        return database;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public int getPort() {
+        return port;
     }
 
     public void addPreparedStatment(String name, String sql) {
