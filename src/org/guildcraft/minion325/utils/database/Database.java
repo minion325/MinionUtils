@@ -39,7 +39,11 @@ public class Database {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            runnable.onUpdate();
+                            try {
+                                runnable.onUpdate();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }.runTask(Database.this.plugin);
                 } catch (SQLException e) {
@@ -63,7 +67,11 @@ public class Database {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            runnable.onReceiveResults(resultSet);
+                            try {
+                                runnable.onReceiveResults(resultSet);
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }.runTask(Database.this.plugin);
                 } catch (SQLException e) {
@@ -125,7 +133,11 @@ public class Database {
                         new BukkitRunnable() {
                             @Override
                             public void run() {
-                                runnable.onUpdate();
+                                try {
+                                    runnable.onUpdate();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }.runTask(Database.this.plugin);
                     } catch (SQLException e) {
@@ -144,7 +156,11 @@ public class Database {
                         new BukkitRunnable() {
                             @Override
                             public void run() {
-                                runnable.onReceiveResults(resultSet);
+                                try {
+                                    runnable.onReceiveResults(resultSet);
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }.runTask(Database.this.plugin);
                     } catch (SQLException e) {
