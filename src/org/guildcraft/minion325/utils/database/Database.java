@@ -21,6 +21,10 @@ public class Database {
 
     public Database(Plugin plugin, String host, int port, String database, String username, String password) {
         this.plugin = plugin;
+        this.host = host;
+        this.port = port;
+        this.database = database;
+        this.username = username;
         if (!Verify.isNotNull(host, port, database, username, password))
             throw new NullPointerException("An argument passed to the constructor was found to be null");
         try {
@@ -54,8 +58,7 @@ public class Database {
     }
 
     public void executeUpdate(String update) {
-        executeUpdate(update, () -> {
-        });
+        executeUpdate(update, () ->{});
     }
 
     public void executeQuery(String query, QueryRunnable runnable) {
@@ -79,6 +82,23 @@ public class Database {
                 }
             }
         }.runTaskAsynchronously(this.plugin);
+    }
+
+    public void executeSyncQuery(String sql, QueryRunnable runnable) {
+        try {
+            ResultSet resultSet = Database.this.connection.createStatement().executeQuery(sql);
+            runnable.onReceiveResults(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void executeSyncUpdate(String sql) {
+        try {
+            Database.this.connection.createStatement().executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getHost() {
