@@ -1,4 +1,4 @@
-package org.guildcraft.minion325.utils.validation;
+package me.minion325.utils.other;
 
 public class Verify {
 

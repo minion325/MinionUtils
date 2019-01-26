@@ -1,8 +1,8 @@
-package org.guildcraft.minion325.utils.database;
+package me.minion325.utils.database;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.guildcraft.minion325.utils.validation.Verify;
+import me.minion325.utils.other.Verify;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

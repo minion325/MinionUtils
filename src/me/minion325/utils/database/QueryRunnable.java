@@ -1,4 +1,4 @@
-package org.guildcraft.minion325.utils.database;
+package me.minion325.utils.database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package org.guildcraft.minion325.utils;
+package me.minion325.utils;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
