@@ -7,7 +7,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +16,8 @@ public class ItemStackSerializer {
 
     public static ItemStack deserialize(ConfigurationSection section) {
         try {
-            Material type = Material.valueOf(section.getString("type"));
-            int amount = section.getInt("amount");
+            Material type = Material.valueOf(section.getString("type", "STONE"));
+            int amount = section.getInt("amount", 1);
 
             ItemStack stack = new ItemStack(type, amount);
 
@@ -40,6 +39,7 @@ public class ItemStackSerializer {
                     }
                 }
             }
+            stack.setItemMeta(meta);
 
             return stack;
 
@@ -53,7 +53,7 @@ public class ItemStackSerializer {
 
         ItemMeta meta = itemStack.getItemMeta();
 
-        stackData.put("type", itemStack.getType());
+        stackData.put("type", itemStack.getType().name());
         stackData.put("amount", itemStack.getAmount());
 
         if (meta != null) {

@@ -21,4 +21,14 @@ public class PlayerUtils {
             e.printStackTrace();
         }
     }
+
+    public static int getPing(Player player) {
+        try {
+            Object nmsPlayer = (player).getClass().getMethod("getHandle").invoke(player);
+            return (int) nmsPlayer.getClass().getField("ping").get(nmsPlayer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }
