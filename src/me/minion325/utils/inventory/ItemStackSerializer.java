@@ -14,6 +14,8 @@ import java.util.Map;
 
 public class ItemStackSerializer {
 
+    private ItemStackSerializer(){}
+
     public static ItemStack deserialize(ConfigurationSection section) {
         try {
             Material type = Material.valueOf(section.getString("type", "STONE"));

@@ -8,6 +8,12 @@ public class PlayerUtils {
     private static String OBC = Bukkit.getServer().getClass().getPackage().getName();
     private static String NMS = OBC.replace("org.bukkit.craftbukkit", "net.minecraft.server");
 
+    /**
+     * Respawns a dead player so that they do not have to click
+     * the respawn button. (Useful in minigames)
+     *
+     * @param player The player you would like to respawn.
+     */
     public static void respawnPlayer(Player player) {
         try {
             Object enumClientCommand = Class.forName(NMS + ".PacketPlayInClientCommand$EnumClientCommand").getField("PERFORM_RESPAWN").get(null);
@@ -21,6 +27,13 @@ public class PlayerUtils {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Gets the ping of a player.
+     *
+     * @param player the player you would like to get the ping of.
+     * @return The player's ping.
+     */
 
     public static int getPing(Player player) {
         try {

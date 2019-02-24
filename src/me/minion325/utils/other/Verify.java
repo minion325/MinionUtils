@@ -2,6 +2,8 @@ package me.minion325.utils.other;
 
 public class Verify {
 
+    private Verify(){}
+
     public static boolean isNotNull(Object... args){
         if (args == null)
             return false;

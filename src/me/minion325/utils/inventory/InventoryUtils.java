@@ -8,8 +8,18 @@ import org.bukkit.inventory.ItemStack;
 
 public class InventoryUtils {
 
+    private InventoryUtils(){}
+
     private static String OBC = Bukkit.getServer().getClass().getPackage().getName();
     private static String NMS = OBC.replace("org.bukkit.craftbukkit", "net.minecraft.server");
+
+    /**
+     * Removes a certain amount of materials from an inventory.
+     *
+     * @param inventory The inventory that the materials are present in.
+     * @param type The material to be removed.
+     * @param amount The amount of material to be removed.
+     */
 
     public static void removeItems(Inventory inventory, Material type, int amount) {
         if (amount <= 0) return;
@@ -29,6 +39,33 @@ public class InventoryUtils {
                 }
             }
         }
+    }
+
+    /**
+     * Checks whether an inventory can contain an itemstack
+     * @param itemstack The itemstack you wish to check if it can be added.
+     * @param inventory The inventory to be checked.
+     * @return The amount of te itemstack that the inventory can hold.
+     */
+
+    public static int canContain(ItemStack itemstack, Inventory inventory) {
+        int remains = itemstack.getAmount();
+
+        for (int i = 0; i < inventory.getSize(); ++i) {
+            if (inventory.getItem(i) == null) {
+                return itemstack.getAmount();
+            }
+
+            if (inventory.getItem(i) != null && inventory.getItem(i).isSimilar(itemstack) && (inventory.getItem(i).getMaxStackSize() > 1) && inventory.getItem(i).getAmount() < inventory.getItem(i).getMaxStackSize() && inventory.getItem(i).getAmount() < itemstack.getMaxStackSize() && (inventory.getItem(i).getData().equals(itemstack.getData()))) {
+                remains -= (inventory.getItem(i).getMaxStackSize() < itemstack.getMaxStackSize() ? inventory.getItem(i).getMaxStackSize() : itemstack.getMaxStackSize()) - inventory.getItem(i).getAmount();
+            }
+
+            if (remains <= 0) {
+                return itemstack.getAmount();
+            }
+        }
+
+        return itemstack.getAmount() - remains;
     }
 
 }
